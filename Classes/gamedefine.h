@@ -19,5 +19,8 @@
 #define GAME_ROWS 4
 #define GAME_COLS 4
 
+enum class E_MOVE_DIR{
+    UP,DOWN,RIGHT,LEFT
+};
 
 #endif

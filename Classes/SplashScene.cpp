@@ -28,7 +28,7 @@ bool Splash::init(){
     
     //计划任务3秒钟后，自动跳到游戏场景
     this->scheduleOnce(schedule_selector(Splash::jumpToGame), 3);
-    
+                                                                                                                                                        
     return true;
 }
 
