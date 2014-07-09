@@ -75,6 +75,8 @@
 		EA127C68196C4F8400A486D4 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA127C63196C4F8400A486D4 /* GameScene.cpp */; };
 		EA127C69196C4F8400A486D4 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA127C65196C4F8400A486D4 /* SplashScene.cpp */; };
 		EA127C6A196C4F8400A486D4 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA127C65196C4F8400A486D4 /* SplashScene.cpp */; };
+		EA1AB302196D871500B25843 /* MovedTiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA1AB300196D871500B25843 /* MovedTiled.cpp */; };
+		EA1AB303196D871500B25843 /* MovedTiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA1AB300196D871500B25843 /* MovedTiled.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -278,6 +280,8 @@
 		EA127C64196C4F8400A486D4 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/GameScene.h; sourceTree = "<group>"; };
 		EA127C65196C4F8400A486D4 /* SplashScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SplashScene.cpp; path = ../Classes/SplashScene.cpp; sourceTree = "<group>"; };
 		EA127C66196C4F8400A486D4 /* SplashScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashScene.h; path = ../Classes/SplashScene.h; sourceTree = "<group>"; };
+		EA1AB300196D871500B25843 /* MovedTiled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MovedTiled.cpp; path = ../Classes/MovedTiled.cpp; sourceTree = "<group>"; };
+		EA1AB301196D871500B25843 /* MovedTiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovedTiled.h; path = ../Classes/MovedTiled.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +358,8 @@
 				EA127C66196C4F8400A486D4 /* SplashScene.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
+				EA1AB300196D871500B25843 /* MovedTiled.cpp */,
+				EA1AB301196D871500B25843 /* MovedTiled.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -687,6 +693,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA1AB302196D871500B25843 /* MovedTiled.cpp in Sources */,
 				EA127C67196C4F8400A486D4 /* GameScene.cpp in Sources */,
 				EA127C69196C4F8400A486D4 /* SplashScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -702,6 +709,7 @@
 			files = (
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
 				EA127C6A196C4F8400A486D4 /* SplashScene.cpp in Sources */,
+				EA1AB303196D871500B25843 /* MovedTiled.cpp in Sources */,
 				EA127C68196C4F8400A486D4 /* GameScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);

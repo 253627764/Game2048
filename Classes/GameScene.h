@@ -12,6 +12,7 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "gamedefine.h"
+#include "MovedTiled.h"
 
 USING_NS_CC;
 
