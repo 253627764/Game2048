@@ -141,9 +141,11 @@ void Game::newMovedTiled(){
     int num = rand()%freeCount;
 
     int count = 0;
-    for(int row =0;row < GAME_ROWS;row++){
+    int row = 0;
+    int col = 0;
+    for(row =0;row < GAME_ROWS;row++){
         bool find = false;
-        for(int col = 0;col<GAME_COLS;col++){
+        for(col = 0;col<GAME_COLS;col++){
             //说明这一位置是空白区域
             if(map[row][col]==0){
                 count ++; //记录空白的数量
@@ -219,13 +221,141 @@ void Game::moveUp(){
 }
 
 void Game::moveDown(){
-    
+    for(int col=0;col < GAME_COLS;col++){
+        //向上移动，先从最上方第4行开始移动(cocos2d中左下角为原点)
+        for(int row=0;row < GAME_ROWS;row++){
+            
+            //如果当前块不是空白块->移动
+            if(map[row][col] > 0){
+                //移动当前行
+                for(int row1=row;row1>0;row1--){
+                    //判断它下方是否为0,是0就移下去
+                    if(map[row1-1][col]==0){
+                        map[row1-1][col]=map[row1][col];
+                        map[row1][col]=0;
+                        m_allTiled.at(map[row1-1][col]-1)->moveTo(row1-1, col);
+                    }else{
+                        //判断是否有可以消除的块,取出前方那一块的数值
+                        int numObj = m_allTiled.at(map[row1-1][col]-1)->m_number;
+                        //取出当前块的值
+                        int rowNum = m_allTiled.at(map[row1][col]-1)->m_number;
+                        if(numObj == rowNum){
+                            m_allTiled.at(map[row1-1][col]-1)->doubleNumber();
+                            m_allTiled.at(map[row1][col]-1)->removeFromParent();
+                            
+                            //取得当前要消除块在map中的标号
+                            int index = map[row1][col];
+                            m_allTiled.erase(map[row1][col]-1);
+                            //把map中标号大于当前块的减1
+                            for(int r=0;r<GAME_ROWS;r++){
+                                for(int c=0;c<GAME_COLS;c++){
+                                    if(map[r][c]>index){
+                                        map[r][c]--;
+                                    }
+                                }
+                            }
+                            map[row1][col] = 0;
+                        }
+                        break;
+                    }
+                }
+                
+            }
+            
+        }
+    }
 }
 
 void Game::moveLeft(){
-    
+    for(int row=0;row < GAME_ROWS;row++){
+        //向上移动，先从最上方第4行开始移动(cocos2d中左下角为原点)
+        for(int col=0;col < GAME_COLS;col++){
+            
+            //如果当前块不是空白块->移动
+            if(map[row][col] > 0){
+                //移动当前行
+                for(int col1=col;col1>0;col1--){
+                    //判断它左方是否为0,是0就移向左边
+                    if(map[row][col1-1]==0){
+                        map[row][col1-1]=map[row][col1];
+                        map[row][col1]=0;
+                        m_allTiled.at(map[row][col1-1]-1)->moveTo(row, col1-1);
+                    }else{
+                        //判断是否有可以消除的块,取出前方那一块的数值
+                        int numObj = m_allTiled.at(map[row][col1-1]-1)->m_number;
+                        //取出当前块的值
+                        int rowNum = m_allTiled.at(map[row][col1]-1)->m_number;
+                        if(numObj == rowNum){
+                            m_allTiled.at(map[row][col1-1]-1)->doubleNumber();
+                            m_allTiled.at(map[row][col1]-1)->removeFromParent();
+                            
+                            //取得当前要消除块在map中的标号
+                            int index = map[row][col1];
+                            m_allTiled.erase(map[row][col1]-1);
+                            //把map中标号大于当前块的减1
+                            for(int r=0;r<GAME_ROWS;r++){
+                                for(int c=0;c<GAME_COLS;c++){
+                                    if(map[r][c]>index){
+                                        map[r][c]--;
+                                    }
+                                }
+                            }
+                            map[row][col1] = 0;
+                        }
+                        break;
+                    }
+                }
+                
+            }
+            
+        }
+    }
+
 }
 
 void Game::moveRight(){
-    
+    for(int row=0;row < GAME_ROWS;row++){
+        //向上移动，先从最上方第4行开始移动(cocos2d中左下角为原点)
+        for(int col=GAME_COLS-1;col>=0;col--){
+            
+            //如果当前块不是空白块->移动
+            if(map[row][col] > 0){
+                //移动当前行
+                for(int col1=col;col1<GAME_COLS-1;col1++){
+                    //判断它左方是否为0,是0就移向左边
+                    if(map[row][col1+1]==0){
+                        map[row][col1+1]=map[row][col1];
+                        map[row][col1]=0;
+                        m_allTiled.at(map[row][col1+1]-1)->moveTo(row, col1+1);
+                    }else{
+                        //判断是否有可以消除的块,取出前方那一块的数值
+                        int numObj = m_allTiled.at(map[row][col1+1]-1)->m_number;
+                        //取出当前块的值
+                        int rowNum = m_allTiled.at(map[row][col1]-1)->m_number;
+                        if(numObj == rowNum){
+                            m_allTiled.at(map[row][col1+1]-1)->doubleNumber();
+                            m_allTiled.at(map[row][col1]-1)->removeFromParent();
+                            
+                            //取得当前要消除块在map中的标号
+                            int index = map[row][col1];
+                            m_allTiled.erase(map[row][col1]-1);
+                            //把map中标号大于当前块的减1
+                            for(int r=0;r<GAME_ROWS;r++){
+                                for(int c=0;c<GAME_COLS;c++){
+                                    if(map[r][c]>index){
+                                        map[r][c]--;
+                                    }
+                                }
+                            }
+                            map[row][col1] = 0;
+                        }
+                        break;
+                    }
+                }
+                
+            }
+            
+        }
+    }
+
 }
