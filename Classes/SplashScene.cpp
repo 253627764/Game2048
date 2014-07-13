@@ -8,6 +8,8 @@
 
 #include "SplashScene.h"
 #include "GameScene.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 
 bool Splash::init(){
@@ -33,6 +35,10 @@ bool Splash::init(){
 }
 
 void Splash::jumpToGame(float t){
+    //音效的加载
+    SimpleAudioEngine::getInstance()->preloadEffect("move1.wav");
+    SimpleAudioEngine::getInstance()->preloadEffect("moveClear.wav");
+    
     auto scene = Game::createScene();
     //场景切换
     Director::getInstance()->replaceScene(TransitionProgressOutIn::create(0.5, scene));

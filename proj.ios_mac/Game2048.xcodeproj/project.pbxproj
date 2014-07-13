@@ -77,6 +77,8 @@
 		EA127C6A196C4F8400A486D4 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA127C65196C4F8400A486D4 /* SplashScene.cpp */; };
 		EA1AB302196D871500B25843 /* MovedTiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA1AB300196D871500B25843 /* MovedTiled.cpp */; };
 		EA1AB303196D871500B25843 /* MovedTiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA1AB300196D871500B25843 /* MovedTiled.cpp */; };
+		EA50E2DA19729EE900652999 /* move1.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA50E2D819729EE900652999 /* move1.wav */; };
+		EA50E2DB19729EE900652999 /* moveClear.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA50E2D919729EE900652999 /* moveClear.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,6 +284,8 @@
 		EA127C66196C4F8400A486D4 /* SplashScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashScene.h; path = ../Classes/SplashScene.h; sourceTree = "<group>"; };
 		EA1AB300196D871500B25843 /* MovedTiled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MovedTiled.cpp; path = ../Classes/MovedTiled.cpp; sourceTree = "<group>"; };
 		EA1AB301196D871500B25843 /* MovedTiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovedTiled.h; path = ../Classes/MovedTiled.h; sourceTree = "<group>"; };
+		EA50E2D819729EE900652999 /* move1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = move1.wav; sourceTree = "<group>"; };
+		EA50E2D919729EE900652999 /* moveClear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moveClear.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,6 +479,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EA50E2D819729EE900652999 /* move1.wav */,
+				EA50E2D919729EE900652999 /* moveClear.wav */,
 				EA127C5B196C4EBE00A486D4 /* futura-48.fnt */,
 				EA127C5C196C4EBE00A486D4 /* futura-48.png */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
@@ -650,6 +656,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				EA50E2DB19729EE900652999 /* moveClear.wav in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
@@ -668,6 +675,7 @@
 				EA127C5F196C4EBE00A486D4 /* futura-48.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
+				EA50E2DA19729EE900652999 /* move1.wav in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 				EA127C5D196C4EBE00A486D4 /* futura-48.fnt in Resources */,
 			);

@@ -9,6 +9,10 @@
 #include "MovedTiled.h"
 
 void MovedTiled::showAt(int r,int c){
+    moveTo(r, c);
+    //动画
+    auto bk = this->getChildByTag(110);
+    bk->runAction(Sequence::create(ScaleTo::create(0.2, 0.8),ScaleTo::create(0.2, 1.2),ScaleTo::create(0.2, 1), NULL));
     
 }
 
@@ -26,6 +30,51 @@ void MovedTiled::doubleNumber(){
     auto bk = this->getChildByTag(110);
     Label * label = (Label*)bk->getChildByTag(10);
     label->setString(StringUtils::format("%d",m_number));
+    //动画效果
+    bk->runAction(Sequence::create(ScaleTo::create(0.2, 0.8),ScaleTo::create(0.2, 1.2),ScaleTo::create(0.2, 1), NULL));
+    
+    switch (this->m_number) {
+        case 2:
+            bk->setColor(Color3B(230,220,210));
+            
+        case 4:
+            bk->setColor(Color3B(230,210,190));
+            break;
+        case 8:
+            bk->setColor(Color3B(230,150,100));
+            label->setColor(Color3B(255,255,255));
+            break;
+        case 16:
+            bk->setColor(Color3B(230,120,80));
+            label->setColor(Color3B(255,255,255));
+            break;
+        case 32:
+            bk->setColor(Color3B(230,100,90));
+            label->setColor(Color3B(255,255,255));
+            break;
+        case 64:
+            bk->setColor(Color3B(230,70,60));
+            label->setColor(Color3B(255,255,255));
+            break;
+        case 128:
+            bk->setColor(Color3B(230,190,60));
+            label->setColor(Color3B(255,255,255));
+            break;
+        case 256:
+            bk->setColor(Color3B(230,190,60));
+            label->setColor(Color3B(255,255,255));
+            break;
+        case 512:
+            bk->setColor(Color3B(230,190,60));
+            label->setColor(Color3B(255,255,255));
+            break;
+        case 1024:
+        case 2048:
+            label->setScale(0.5);
+            bk->setColor(Color3B(210,180,30));
+            label->setColor(Color3B(255,255,255));
+    }
+    
 }
 
 bool MovedTiled::init(){
@@ -47,6 +96,16 @@ bool MovedTiled::init(){
 //    auto label = Label::create();
 //    label->setString(StringUtils::format("%d",this->m_number));
 //    label->setScale(4);
+    
+    switch (this->m_number) {
+        case 2:
+            bk->setColor(Color3B(230,220,210));
+            
+        case 4:
+            bk->setColor(Color3B(230,210,190));
+            break;
+    }
+    
     auto label = Label::createWithSystemFont(StringUtils::format("%d",this->m_number), "宋体", 60);
     label->setPosition(Point(GAME_TILED_WIDTH/2,GAME_TILED_HEIGHT/2));
     label->setColor(Color3B::BLACK);

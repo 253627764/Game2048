@@ -7,6 +7,8 @@
 //
 
 #include "GameScene.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 Scene * Game::createScene(){
     auto scene = Scene::create();
@@ -99,7 +101,7 @@ bool Game::init(){
 }
 
 void Game::moveAllTiled(E_MOVE_DIR dir){
-    
+    m_sound_clear=false;
     //移动所有块，消除
     switch(dir){
         case E_MOVE_DIR::UP:
@@ -118,8 +120,15 @@ void Game::moveAllTiled(E_MOVE_DIR dir){
             break;
     }
     
-    
+
     //播放音乐
+    if(m_sound_clear)
+    {
+        SimpleAudioEngine::getInstance()->playEffect("moveClear.wav");
+    }else
+    {
+        SimpleAudioEngine::getInstance()->playEffect("move1.wav");
+    }
     
     //判断输赢
     
@@ -134,6 +143,7 @@ void Game::newMovedTiled(){
     
     //在空白位置产生块
     int freeCount = 16-m_allTiled.size();
+    //没有空白区域
     if(freeCount == 0){
         return;
     }
@@ -143,13 +153,13 @@ void Game::newMovedTiled(){
     int count = 0;
     int row = 0;
     int col = 0;
-    for(row =0;row < GAME_ROWS;row++){
-        bool find = false;
+    bool find = false;
+    for(;row < GAME_ROWS;row++){
         for(col = 0;col<GAME_COLS;col++){
             //说明这一位置是空白区域
             if(map[row][col]==0){
                 count ++; //记录空白的数量
-                if(count==num){
+                if(count>=num){
                     find = true;
                     break;
                 }
@@ -163,12 +173,15 @@ void Game::newMovedTiled(){
     //添加到colorBack
     colorBack->addChild(tiled);
     //位置数转换成区块坐标
-    tiled->moveTo(num/GAME_ROWS,num%GAME_COLS);
+//    tiled->moveTo(num/GAME_ROWS,num%GAME_COLS);
+//    tiled->moveTo(row, col);
+    tiled->showAt(row, col);
     
     //将新产生的块保存到vector
     m_allTiled.pushBack(tiled);
     //修改新块所在区块坐标的状态值
-    map[num/GAME_ROWS][num%GAME_COLS]=m_allTiled.getIndex(tiled)+1;
+//    map[num/GAME_ROWS][num%GAME_COLS]=m_allTiled.getIndex(tiled)+1;
+    map[row][col]=m_allTiled.getIndex(tiled)+1;
 }
 
 void Game::moveUp(){
@@ -191,6 +204,7 @@ void Game::moveUp(){
                         //取出当前块的值
                         int rowNum = m_allTiled.at(map[row1][col]-1)->m_number;
                         if(numObj == rowNum){
+                            m_sound_clear=true;
                             m_allTiled.at(map[row1+1][col]-1)->doubleNumber();
                             m_allTiled.at(map[row1][col]-1)->removeFromParent();
                             
@@ -240,6 +254,7 @@ void Game::moveDown(){
                         //取出当前块的值
                         int rowNum = m_allTiled.at(map[row1][col]-1)->m_number;
                         if(numObj == rowNum){
+                            m_sound_clear=true;
                             m_allTiled.at(map[row1-1][col]-1)->doubleNumber();
                             m_allTiled.at(map[row1][col]-1)->removeFromParent();
                             
@@ -286,6 +301,7 @@ void Game::moveLeft(){
                         //取出当前块的值
                         int rowNum = m_allTiled.at(map[row][col1]-1)->m_number;
                         if(numObj == rowNum){
+                            m_sound_clear=true;
                             m_allTiled.at(map[row][col1-1]-1)->doubleNumber();
                             m_allTiled.at(map[row][col1]-1)->removeFromParent();
                             
@@ -333,6 +349,7 @@ void Game::moveRight(){
                         //取出当前块的值
                         int rowNum = m_allTiled.at(map[row][col1]-1)->m_number;
                         if(numObj == rowNum){
+                            m_sound_clear=true;
                             m_allTiled.at(map[row][col1+1]-1)->doubleNumber();
                             m_allTiled.at(map[row][col1]-1)->removeFromParent();
                             
