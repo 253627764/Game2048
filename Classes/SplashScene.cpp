@@ -27,7 +27,7 @@ bool Splash::init(){
     labelGameVec->setPosition(Point(GAME_SCREEN_WIDTH/2,GAME_SCREEN_HEIGH/4));
     labelGame->setScale(2);
     this->addChild(labelGameVec);
-    
+        
     //计划任务3秒钟后，自动跳到游戏场景
     this->scheduleOnce(schedule_selector(Splash::jumpToGame), 3);
                                                                                                                                                         

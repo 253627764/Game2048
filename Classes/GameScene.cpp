@@ -8,6 +8,8 @@
 
 #include "GameScene.h"
 #include "SimpleAudioEngine.h"
+#include "GameOver.h"
+
 using namespace CocosDenshion;
 
 Scene * Game::createScene(){
@@ -27,6 +29,15 @@ bool Game::init(){
     labelGame->setScale(2);
     labelGame->setPosition(Point(labelGame->getContentSize().width,GAME_SCREEN_HEIGH-labelGame->getContentSize().height));
     this->addChild(labelGame);
+    
+    //初始化分数
+    m_score = 0;
+    auto labelScore=Label::createWithBMFont("futura-48.fnt","Score:0");
+    labelScore->setTag(120);
+    labelScore->setScale(2);
+    labelScore->setPosition(Point(GAME_SCREEN_WIDTH/2,GAME_SCREEN_HEIGH-labelScore->getContentSize().height*3));
+    this->addChild(labelScore);
+    
     
     //初始化游戏网格
     int tiledMapWidth = GAME_TILED_WIDTH*GAME_COLS+GAME_TILED_BOARD_WIDTH*(GAME_COLS+1);
@@ -122,15 +133,15 @@ void Game::moveAllTiled(E_MOVE_DIR dir){
     
 
     //播放音乐
-    if(m_sound_clear)
-    {
+    if(m_sound_clear){
         SimpleAudioEngine::getInstance()->playEffect("moveClear.wav");
-    }else
-    {
+    }else{
         SimpleAudioEngine::getInstance()->playEffect("move1.wav");
     }
     
-    //判断输赢
+    //分数变化
+    Label* labelScore = (Label*)this->getChildByTag(120);
+    labelScore->setString(StringUtils::format("Score:%d",m_score));
     
     //产生新块
     newMovedTiled();
@@ -143,10 +154,7 @@ void Game::newMovedTiled(){
     
     //在空白位置产生块
     int freeCount = 16-m_allTiled.size();
-    //没有空白区域
-    if(freeCount == 0){
-        return;
-    }
+    
     //随机产生一个位置数
     int num = rand()%freeCount;
 
@@ -182,6 +190,53 @@ void Game::newMovedTiled(){
     //修改新块所在区块坐标的状态值
 //    map[num/GAME_ROWS][num%GAME_COLS]=m_allTiled.getIndex(tiled)+1;
     map[row][col]=m_allTiled.getIndex(tiled)+1;
+    
+    //只剩一块空白区域时，作死亡判定
+    if(freeCount == 1){
+        //判定游戏输赢
+        //上，下，左，右是否能移动
+        for(int r=0;r<GAME_ROWS;r++){
+            for(int c=0;c<GAME_COLS;c++){
+                //第r行，第c列的数值
+                int num = m_allTiled.at(map[r][c]-1)->m_number;
+                int objNum = 0;
+                //上
+                if(r+1<GAME_ROWS){
+                    objNum = m_allTiled.at(map[r+1][c]-1)->m_number;
+                    if(num==objNum){
+                        return ;
+                    }
+                }
+                //下
+                if(r-1>=0){
+                    objNum = m_allTiled.at(map[r-1][c]-1)->m_number;
+                    if(num==objNum){
+                        return ;
+                    }
+                }
+                //左
+                if(c-1>=0){
+                    objNum = m_allTiled.at(map[r][c-1]-1)->m_number;
+                    if(num==objNum){
+                        return ;
+                    }
+                }
+                //右
+                if(c+1<GAME_COLS){
+                    objNum = m_allTiled.at(map[r][c+1]-1)->m_number;
+                    if(num==objNum){
+                        return ;
+                    }
+                }
+                
+            }
+        }
+        
+        auto scene = GameOver::createScene();
+        Director::getInstance()->replaceScene(TransitionFadeDown::create(0.5,scene));
+        return;
+    }
+    
 }
 
 void Game::moveUp(){
@@ -205,6 +260,7 @@ void Game::moveUp(){
                         int rowNum = m_allTiled.at(map[row1][col]-1)->m_number;
                         if(numObj == rowNum){
                             m_sound_clear=true;
+                            m_score+=rowNum*2;
                             m_allTiled.at(map[row1+1][col]-1)->doubleNumber();
                             m_allTiled.at(map[row1][col]-1)->removeFromParent();
                             
@@ -255,6 +311,7 @@ void Game::moveDown(){
                         int rowNum = m_allTiled.at(map[row1][col]-1)->m_number;
                         if(numObj == rowNum){
                             m_sound_clear=true;
+                            m_score+=rowNum*2;
                             m_allTiled.at(map[row1-1][col]-1)->doubleNumber();
                             m_allTiled.at(map[row1][col]-1)->removeFromParent();
                             
@@ -302,6 +359,7 @@ void Game::moveLeft(){
                         int rowNum = m_allTiled.at(map[row][col1]-1)->m_number;
                         if(numObj == rowNum){
                             m_sound_clear=true;
+                            m_score+=rowNum*2;
                             m_allTiled.at(map[row][col1-1]-1)->doubleNumber();
                             m_allTiled.at(map[row][col1]-1)->removeFromParent();
                             
@@ -350,6 +408,7 @@ void Game::moveRight(){
                         int rowNum = m_allTiled.at(map[row][col1]-1)->m_number;
                         if(numObj == rowNum){
                             m_sound_clear=true;
+                            m_score+=rowNum*2;
                             m_allTiled.at(map[row][col1+1]-1)->doubleNumber();
                             m_allTiled.at(map[row][col1]-1)->removeFromParent();
                             

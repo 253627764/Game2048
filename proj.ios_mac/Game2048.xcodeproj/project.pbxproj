@@ -77,6 +77,7 @@
 		EA127C6A196C4F8400A486D4 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA127C65196C4F8400A486D4 /* SplashScene.cpp */; };
 		EA1AB302196D871500B25843 /* MovedTiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA1AB300196D871500B25843 /* MovedTiled.cpp */; };
 		EA1AB303196D871500B25843 /* MovedTiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA1AB300196D871500B25843 /* MovedTiled.cpp */; };
+		EA2E45DB1972CFCC00E23EF8 /* GameOver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA2E45D91972CFCC00E23EF8 /* GameOver.cpp */; };
 		EA50E2DA19729EE900652999 /* move1.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA50E2D819729EE900652999 /* move1.wav */; };
 		EA50E2DB19729EE900652999 /* moveClear.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA50E2D919729EE900652999 /* moveClear.wav */; };
 /* End PBXBuildFile section */
@@ -284,6 +285,8 @@
 		EA127C66196C4F8400A486D4 /* SplashScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashScene.h; path = ../Classes/SplashScene.h; sourceTree = "<group>"; };
 		EA1AB300196D871500B25843 /* MovedTiled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MovedTiled.cpp; path = ../Classes/MovedTiled.cpp; sourceTree = "<group>"; };
 		EA1AB301196D871500B25843 /* MovedTiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovedTiled.h; path = ../Classes/MovedTiled.h; sourceTree = "<group>"; };
+		EA2E45D91972CFCC00E23EF8 /* GameOver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameOver.cpp; path = ../Classes/GameOver.cpp; sourceTree = "<group>"; };
+		EA2E45DA1972CFCC00E23EF8 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOver.h; path = ../Classes/GameOver.h; sourceTree = "<group>"; };
 		EA50E2D819729EE900652999 /* move1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = move1.wav; sourceTree = "<group>"; };
 		EA50E2D919729EE900652999 /* moveClear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moveClear.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -364,6 +367,8 @@
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				EA1AB300196D871500B25843 /* MovedTiled.cpp */,
 				EA1AB301196D871500B25843 /* MovedTiled.h */,
+				EA2E45D91972CFCC00E23EF8 /* GameOver.cpp */,
+				EA2E45DA1972CFCC00E23EF8 /* GameOver.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -704,6 +709,7 @@
 				EA1AB302196D871500B25843 /* MovedTiled.cpp in Sources */,
 				EA127C67196C4F8400A486D4 /* GameScene.cpp in Sources */,
 				EA127C69196C4F8400A486D4 /* SplashScene.cpp in Sources */,
+				EA2E45DB1972CFCC00E23EF8 /* GameOver.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,

@@ -24,6 +24,8 @@ private:
     //触摸移动开始的点
     int m_x,m_y;
     bool m_sound_clear;
+    //分数
+    int m_score;
 public:
     //定义移动的方向
     E_MOVE_DIR m_dir;
