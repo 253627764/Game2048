@@ -27,6 +27,9 @@ public:
     //将这个块移动到某行某列
     void moveTo(int r,int c);
     
+    //翻倍
+    void doubleNumber();
+    
     CREATE_FUNC(MovedTiled);
     bool init();
 };

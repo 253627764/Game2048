@@ -184,13 +184,38 @@ void Game::moveUp(){
                         map[row1][col]=0;
                         m_allTiled.at(map[row1+1][col]-1)->moveTo(row1+1, col);
                     }else{
+                        //判断是否有可以消除的块,取出前方那一块的数值
+                        int numObj = m_allTiled.at(map[row1+1][col]-1)->m_number;
+                        //取出当前块的值
+                        int rowNum = m_allTiled.at(map[row1][col]-1)->m_number;
+                        if(numObj == rowNum){
+                            m_allTiled.at(map[row1+1][col]-1)->doubleNumber();
+                            m_allTiled.at(map[row1][col]-1)->removeFromParent();
+                            
+                            //取得当前要消除块在map中的标号
+                            int index = map[row1][col];
+                            m_allTiled.erase(map[row1][col]-1);
+                            //把map中标号大于当前块的减1
+                            for(int r=0;r<GAME_ROWS;r++){
+                                for(int c=0;c<GAME_COLS;c++){
+                                    if(map[r][c]>index){
+                                        map[r][c]--;
+                                    }
+                                }
+                            }
+                            map[row1][col] = 0;
+                        }
                         break;
                     }
                 }
+            
             }
             
         }
     }
+    
+    //消除最前面的
+    
 }
 
 void Game::moveDown(){

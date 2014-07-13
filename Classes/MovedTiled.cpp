@@ -20,6 +20,14 @@ void MovedTiled::moveTo(int r,int c){
     
 }
 
+//翻倍
+void MovedTiled::doubleNumber(){
+    this->m_number = this->m_number*2;
+    auto bk = this->getChildByTag(110);
+    Label * label = (Label*)bk->getChildByTag(10);
+    label->setString(StringUtils::format("%d",m_number));
+}
+
 bool MovedTiled::init(){
     if(!Node::init()){
         return false;
@@ -27,6 +35,7 @@ bool MovedTiled::init(){
     
     //背景层
     auto bk = LayerColor::create(Color4B(200,200,200,255),GAME_TILED_WIDTH,GAME_TILED_HEIGHT);
+    bk->setTag(110);
     this->addChild(bk);
     
     //数字层
@@ -41,6 +50,7 @@ bool MovedTiled::init(){
     auto label = Label::createWithSystemFont(StringUtils::format("%d",this->m_number), "宋体", 60);
     label->setPosition(Point(GAME_TILED_WIDTH/2,GAME_TILED_HEIGHT/2));
     label->setColor(Color3B::BLACK);
+    label->setTag(10);
     bk->addChild(label);
     
     return true;
