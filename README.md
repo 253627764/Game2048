@@ -8,3 +8,6 @@ cocos2d实现的2048游戏..
 **游戏效果截图**
 
 ![Game2048](./doc/a.gif)
+
+
+项目仅供传播学习使用，参考教程:http://cn.cocos2d-x.org/tutorial/lists?id=58
